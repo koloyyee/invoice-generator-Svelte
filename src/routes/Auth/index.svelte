@@ -4,7 +4,7 @@
 	import { hasAccount } from "../../lib/stores/auth";
 	
 
-
+	console.log($hasAccount)
 </script>
 
 <section class="card w-full h-screen flex flex-col items-center justify-center ">
