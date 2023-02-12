@@ -32,7 +32,7 @@
 
 			isAuthenticated.set(true);
 			localStorageUsername.set(username);
-			localStorage.setItem("appUser", JSON.stringify(user))
+			localStorage.setItem('appUser', JSON.stringify(user));
 			currentUser.update((value) => (value = user));
 
 			push('/');
@@ -43,33 +43,34 @@
 	});
 </script>
 
-<form
-	use:form
-	class="shadow-md border-2 
-flex flex-col 
-justify-center items-center
-w-72 p-10 rounded"
->
-	<label for="username">
-		Username:
-		<input
-			class="error rounded"
-			type="text"
-			name="user.username"
-			id="username"
-			required
-		/>
-	</label>
-	<label for="password">
-		Password:
-		<input
-			class="error rounded"
-			type="password"
-			name="user.password"
-			id="password"
-			required
-		/>
-	</label>
-	<AuthBtn action="{'Login'}" />
+<form use:form>
+	<div
+		class="card w-96 bg-base-100 shadow-xl rounded-lg border-gray-100 border-2"
+	>
+		<div class="card-body">
+			<h2 class="card-title">LOGIN</h2>
+			<label for="username">
+				Username:
+				<input
+					class="error rounded input input-bordered w-full max-w-xs"
+					type="text"
+					name="user.username"
+					id="username"
+					required
+				/>
+			</label>
+			<label for="password">
+				Password:
+				<input
+					class="error rounded input input-bordered w-full max-w-xs"
+					type="password"
+					name="user.password"
+					id="password"
+					required
+				/>
+			</label>
+			<AuthBtn action="{'Login'}" />
+		</div>
+	</div>
 </form>
 <HasAccount />

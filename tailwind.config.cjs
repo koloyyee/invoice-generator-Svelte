@@ -1,14 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js,svelte,ts}"],
-  theme: {
-    extend: {},
-  },
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+
   plugins: [
-    require("daisyui"),
+    require('daisyui'),
   ],
 
-daisyui : {
-    themes: ["corporate"]
-}
+  daisyui: {
+    themes: ['corporate', 'business'],
+  },
+  darkMode: 'class',
+
 };
+

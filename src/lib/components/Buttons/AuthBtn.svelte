@@ -1,9 +1,10 @@
 <script>
-    export let action = 'Register';
-
+	export let action = 'Register';
 </script>
 
-
-<button type='submit' class='bg-purple-800 hover:bg-transparent hover:text-purple-800 hover:border-purple-800 hover:border-2 transition-all duration-300 rounded-xl text-white text-xl  mt-8 mb-2 items-center px-12 py-3
-
- md:text-sm md:mt-5'>{action}</button>
+<button
+	type="submit"
+	class="btn btn-outline btn-primary mt-8 mb-2 items-center px-12 py-3
+    rounded-xl
+ md:text-sm md:mt-5">{action}</button
+>

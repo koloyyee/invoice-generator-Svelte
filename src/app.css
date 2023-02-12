@@ -8,9 +8,6 @@
   line-height: 24px;
   font-weight: 400;
 
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -25,7 +22,6 @@ p {
 input,
 textarea,
 #note {
-  background-color: #213547;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border: 0.5px rgba(0, 0, 0, 0.2) solid;
 }
@@ -47,23 +43,6 @@ th {
   padding: .8rem;
 }
 
-
-@media (prefers-color-scheme: light) {
-
-  :root,
-  input,
-  textarea,
-  #note {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-
-}
 
 @media print {
   .not-printable {

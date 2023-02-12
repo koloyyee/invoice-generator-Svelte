@@ -1,7 +1,7 @@
 export interface IItem {
     id?: string,
-    itemName: string,
-    itemPrice: number,
-    itemQuantity: number,
-    itemSubtotal: number,
+    name: string,
+    price: number,
+    quantity: number,
+    subtotal: number,
 }

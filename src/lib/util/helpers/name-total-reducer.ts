@@ -5,9 +5,9 @@ export function nameTotalReducer( invoices: IInvoice[]) {
   const totalAmounts = [];
 
   invoices.forEach( (invoice) => {
-    names.push(invoice.client.name);
+    names.push(invoice.customer.name);
     totalAmounts.push(invoice.totalAmount);
   });
 
-  return {names, totalAmounts};
+  return { names, totalAmounts };
 }

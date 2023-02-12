@@ -7,7 +7,7 @@
 	import { fetchStatus, statusStore } from '../../lib/stores/status';
 	import {
 		nameTotalReducer,
-		statusAggregationReducer
+		statusAggregationReducer,
 	} from '../../lib/util/helpers';
 
 	onMount(async () => {
@@ -29,6 +29,7 @@
 <section
 	class="w-full font-extrabold text-3xl  md:h-screen flex flex-col  p-8 "
 >
+	<h1 class="text-4xl text-extrabold mb-4">Dashboard</h1>
 	<article class="grid md:grid-cols-2 gap-2 w-1/3 md:w-full items-center">
 		<Pie labels="{labels}" counts="{counts}" />
 		<Bar labels="{names}" totalAmount="{totalAmounts}" />

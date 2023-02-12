@@ -7,10 +7,10 @@
 
 	export let item = {
 		id: self.crypto.randomUUID(),
-		itemName: '',
-		itemPrice: 0,
-		itemQuantity: 0,
-		itemSubtotal: 0,
+		name: '',
+		price: 0,
+		quantity: 0,
+		subtotal: 0,
 	};
 
 	$: subtotal = 0;
@@ -18,10 +18,7 @@
 	export let totalAmount = 0;
 
 	function setTotalAmount() {
-		totalAmount = items.reduce(
-			(prev, current) => prev + current.itemSubtotal,
-			0
-		);
+		totalAmount = items.reduce((prev, current) => prev + current.subtotal, 0);
 
 		dispatch('setTotalAmount', {
 			totalAmount: totalAmount,
@@ -29,15 +26,14 @@
 	}
 
 	function appendItem() {
-		if (item.itemName === '' || item.itemPrice === 0 || item.itemQuantity === 0)
-			return;
+		if (item.name === '' || item.price === 0 || item.quantity === 0) return;
 
-		subtotal = item.itemPrice * item.itemQuantity;
+		subtotal = item.price * item.quantity;
 		items = [
 			...items,
 			{
 				...item,
-				itemSubtotal: subtotal,
+				subtotal: subtotal,
 			},
 		];
 
@@ -45,10 +41,10 @@
 
 		item = {
 			id: self.crypto.randomUUID(),
-			itemName: '',
-			itemPrice: 0,
-			itemQuantity: 0,
-			itemSubtotal: 0,
+			name: '',
+			price: 0,
+			quantity: 0,
+			subtotal: 0,
 		};
 	}
 
@@ -57,9 +53,9 @@
 
 		item = {
 			...item,
-			itemName: editingRow.itemName,
-			itemPrice: editingRow.itemPrice,
-			itemQuantity: editingRow.itemQuantity,
+			name: editingRow.name,
+			price: editingRow.price,
+			quantity: editingRow.quantity,
 		};
 		let list = items.filter((item) => item.id !== id);
 		items = list;
@@ -74,36 +70,33 @@
 	on:submit|preventDefault="{appendItem}"
 >
 	<div class="flex flex-col">
-		<label for="itemName">Item</label>
+		<label for="name">Item</label>
 		<input
 			class="rounded-xl outline-0 focus:border-purple-800 focus:border-3 px-1 h-10"
 			type="text"
-			name="itemName"
-			bind:value="{item.itemName}"
+			bind:value="{item.name}"
 			required
 		/>
 	</div>
 
 	<div class="flex flex-col">
-		<label for="itemQuantity">Quantity</label>
+		<label for="quantity">Quantity</label>
 		<input
 			class="rounded-xl outline-0 focus:border-purple-800 focus:border-3 px-1 h-10"
 			type="number"
-			name="itemQuantity"
-			bind:value="{item.itemQuantity}"
+			bind:value="{item.quantity}"
 			required
 		/>
 	</div>
 
 	<div class="flex flex-col">
-		<label for="itemPrice">Price</label>
+		<label for="price">Price</label>
 		<input
 			class="rounded-xl outline-0 focus:border-purple-800 focus:border-3 px-1 h-10 "
 			type="number"
-			name="itemPrice"
 			min="{0}"
 			step="{0.001}"
-			bind:value="{item.itemPrice}"
+			bind:value="{item.price}"
 			required
 		/>
 	</div>
