@@ -24,7 +24,29 @@
 
 	const { labels, counts } = statusAggregationReducer($statusStore);
 	const { names, totalAmounts } = nameTotalReducer(localInvoices);
+
+	async function getForm(event) {
+		const formData = new FormData(event.target);
+		const params = new URLSearchParams();
+
+		for (let [key, value] of formData) {
+			params.append(key, value);
+		}
+		const res = fetch(`${import.meta.env.VITE_BACKEND_API}/status/${params}`);
+		console.log(await res);
+	}
 </script>
+
+<!-- <form action="" on:submit|preventDefault="{getForm}" method="get">
+	<label for="name">
+		Name
+		<input type="text" name="name" />
+	</label>
+	<label for="password">
+		<input type="text" name="password" />
+	</label>
+	<button type="submit"> submit </button>
+</form> -->
 
 <section
 	class="w-full font-extrabold text-3xl  md:h-screen flex flex-col  p-8 "

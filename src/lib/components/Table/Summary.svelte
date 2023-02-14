@@ -92,9 +92,9 @@
 
 <div class="shadow-md border-1 overflow-auto w-full lg:w-full ">
 	<table
-		class="table-auto items-center bg-transparent w-1/2 md:w-full  lg:w-full "
+		class="table table-zebra items-center bg-transparent w-1/2 md:w-full  lg:w-full "
 	>
-		<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 ">
+		<thead class="text-xs uppercase ">
 			{#each $table.getHeaderGroups() as headerGroup}
 				<tr>
 					{#each headerGroup.headers as header}
@@ -129,7 +129,7 @@
 		</thead>
 		<tbody>
 			{#each $table.getRowModel().rows as row, index}
-				<tr class="{index % 2 === 0 ? 'bg-slate-200 dark:bg-slate-800 ' : ''}">
+				<tr>
 					{#each row.getVisibleCells() as cell}
 						<td
 							class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 "

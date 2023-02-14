@@ -16,17 +16,17 @@
 </section>
 
 <CustomerInfo
-	invoiceId="{invoice.invoiceId}"
-	createdDate="{invoice.createdDate}"
-	dueDate="{invoice.dueDate}"
-	client="{invoice.customer}"
-	status="{invoice.status}"
+	bind:invoiceId="{invoice.invoiceId}"
+	bind:createdDate="{invoice.createdDate}"
+	bind:dueDate="{invoice.dueDate}"
+	bind:client="{invoice.customer}"
+	bind:status="{invoice.status}"
 />
 
-<ItemTable items="{invoice.items}" />
+<ItemTable bind:items="{invoice.items}" />
 
 <div class="mt-auto">
-	<TotalAmount totalAmount="{invoice.totalAmount}" />
+	<TotalAmount bind:totalAmount="{invoice.totalAmount}" />
 
-	<Note note="{invoice.note}" />
+	<Note bind:note="{invoice.note}" />
 </div>
