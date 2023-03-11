@@ -1,24 +1,28 @@
-import { InvoiceStatus, type IInvoice } from "../interfaces/invoice.interface";
+import type { IInvoice } from '../interfaces/invoice.interface';
+import { invoiceStatus } from './status';
 
-export let invoice: IInvoice = {
-    invoiceId: new Date().valueOf().toString(),
-    invoiceDate: new Date().toLocaleDateString(),
-    invoiceDueDate: new Date().toLocaleDateString(), 
-    issuer: {
-        username :'',
-        address :'',
-        email :'',
-        website :'',
-        bankName : '',  
-        bankAccount :'',
-        bankHolder :'',
-    },
-    client: {
-        clientName: '',
-        clientAddress: '', 
-    },
-    items: [],
-    note: '',
-    totalAmount: 0,
-    status: InvoiceStatus.NOT_PAID
-}
+export const invoice: IInvoice = {
+  invoiceId: new Date().valueOf().toString(),
+  createdDate: new Date().toLocaleDateString(),
+  dueDate: new Date().toLocaleDateString(),
+  issuer: {
+    username: '',
+    address: '',
+    email: '',
+    phone: '',
+    website: '',
+    bankName: '',
+    bankAccount: '',
+    bankHolder: '',
+  },
+  customer: {
+    name: '',
+    address: '',
+    email: '',
+    phone: '',
+  },
+  items: [],
+  note: '',
+  totalAmount: 0,
+  status: invoiceStatus.NOT_PAID,
+};

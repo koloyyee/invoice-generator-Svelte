@@ -1,9 +1,11 @@
 export interface IIssuer {
-    username: string;
-    address: string;
-    email: string;
-    website: string;
-    bankName: string;
-    bankAccount: string;
-    bankHolder: string;
+  _id?: string;
+  username: string;
+  address: string;
+  phone: string;
+  email: string;
+  website?: string;
+  bankName?: string;
+  bankAccount?: string;
+  bankHolder?: string;
 }

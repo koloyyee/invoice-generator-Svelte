@@ -1,4 +1,4 @@
-import {vitePreprocess} from '@sveltejs/vite-plugin-svelte';
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import preprocess from "svelte-preprocess";
 
 export default {
@@ -9,5 +9,5 @@ export default {
     preprocess({
       postcss: true,
     }),
-  ]
-}
+  ],
+};

@@ -3,28 +3,20 @@ import type { IIssuer } from './issuer.interface';
 import type { IItem } from './item.interface';
 
 export interface IInvoice {
-    invoiceId?: string;
-    createdDate: string;
-    dueDate: string;
-    issuer: IIssuer;
-    customer: ICustomer;
-    items: IItem[];
-    note?: string;
-    totalAmount: number;
-    status: string; // <-- about to add to the interface and the invoice.
+  _id?: string;
+  createdDate: string;
+  dueDate: string;
+  issuer: IIssuer;
+  customer: ICustomer;
+  items: IItem[];
+  note?: string;
+  totalAmount: number;
+  status: string; // <-- about to add to the interface and the invoice.
 }
 
 export type InvoiceTableType = {
-    invoiceId: string;
-    clientName: ICustomer['name'];
-    invoiceDueDate: string;
-    totalAmount: number;
-
-}
-
-export const InvoiceStatus = Object.freeze({
-  NOT_PAID: 'Not Paid',
-  PAID: 'Paid',
-  // ACTIVE: 'Active',
-  VOID: 'Void',
-});
+  invoiceId: string;
+  clientName: ICustomer['name'];
+  invoiceDueDate: string;
+  totalAmount: number;
+};

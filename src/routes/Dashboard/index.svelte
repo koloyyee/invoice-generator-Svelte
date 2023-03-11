@@ -1,59 +1,42 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import Bar from '../../lib/components/Charts/Bar.svelte';
-	import Pie from '../../lib/components/Charts/Pie.svelte';
-	import type { IInvoice } from '../../lib/interfaces';
-	import { fetchInvoices, invoices } from '../../lib/stores/invoice';
-	import { fetchStatus, statusStore } from '../../lib/stores/status';
-	import {
-		nameTotalReducer,
-		statusAggregationReducer,
-	} from '../../lib/util/helpers';
+  import Counts from '../../lib/components/common/cards/counts.svelte';
+  import Bar from '../../lib/components/common/charts/chartjs-bar.svelte';
+  import Pie from '../../lib/components/common/charts/chartjs-pie.svelte';
+  import Summary from '../../lib/components/records/summary-table.svelte';
+  import { customers, updateCustomersStore } from '../../lib/stores/customers';
+  import { updateInvoicesStore } from '../../lib/stores/invoice';
+  import { updateStatusStore } from '../../lib/stores/status';
 
-	onMount(async () => {
-		Promise.all([fetchInvoices(), fetchStatus()]);
-	});
-
-	let localInvoices: IInvoice[];
-	$: localInvoices = JSON.parse(localStorage.getItem('invoices'));
-	localInvoices = localInvoices ?? $invoices;
-
-	let localStatus;
-	$: localStatus = JSON.parse(localStorage.getItem('status'));
-	localStatus = localStatus ?? $statusStore;
-
-	const { labels, counts } = statusAggregationReducer($statusStore);
-	const { names, totalAmounts } = nameTotalReducer(localInvoices);
-
-	async function getForm(event) {
-		const formData = new FormData(event.target);
-		const params = new URLSearchParams();
-
-		for (let [key, value] of formData) {
-			params.append(key, value);
-		}
-		const res = fetch(`${import.meta.env.VITE_BACKEND_API}/status/${params}`);
-		console.log(await res);
-	}
+  let invoicesPromise = updateInvoicesStore();
+  let statusPromise = updateStatusStore();
+  let customersPromise = updateCustomersStore();
 </script>
 
-<!-- <form action="" on:submit|preventDefault="{getForm}" method="get">
-	<label for="name">
-		Name
-		<input type="text" name="name" />
-	</label>
-	<label for="password">
-		<input type="text" name="password" />
-	</label>
-	<button type="submit"> submit </button>
-</form> -->
+<section class="w-full font-extrabold text-3xl  flex flex-col  p-8 ">
+  <h1 class="text-4xl text-extrabold mb-4 border-b-gray-50 border-b-5">
+    Dashboard
+  </h1>
+  {#await customersPromise then}
+    <Counts title={'Customer'} counts={$customers.length} />
+  {/await}
+  <article
+    class="card w-full bg-base-100 shadow-xl rounded-xl grid md:grid-cols-2 gap-2 items-center mb-5"
+  >
+    {#await statusPromise}
+      <button class="btn btn-circle btn-outline loading place-content-center" />
+    {:then { labels, counts }}
+      <div class="card-body w-1/2 md:w-2/3">
+        <Pie {labels} {counts} />
+      </div>
+    {/await}
+    {#await invoicesPromise}
+      <button class="btn btn-circle btn-outline loading place-content-center" />
+    {:then { names, totalAmounts }}
+      <div class="card-body md:w-full">
+        <Bar labels={names} totalAmount={totalAmounts} />
+      </div>
+    {/await}
+  </article>
 
-<section
-	class="w-full font-extrabold text-3xl  md:h-screen flex flex-col  p-8 "
->
-	<h1 class="text-4xl text-extrabold mb-4">Dashboard</h1>
-	<article class="grid md:grid-cols-2 gap-2 w-1/3 md:w-full items-center">
-		<Pie labels="{labels}" counts="{counts}" />
-		<Bar labels="{names}" totalAmount="{totalAmounts}" />
-	</article>
+  <Summary />
 </section>

@@ -10,21 +10,20 @@ export const logout = () => {
   currentUser.set(null);
   isAuthenticated.set(false);
   localStorage.clear();
-  push( '/auth');
+  push('/auth');
 };
 
 export function setHasAccount() {
-  hasAccount.update((value) => value = !value);
+  hasAccount.update((value) => (value = !value));
 }
 
-
-const _username = localStorage.getItem('appUser');
+const appUser = localStorage.getItem('appUser');
 
 export const localStorageUsername = writable(
-     _username? JSON.parse(_username): null );
+  appUser ? JSON.parse(appUser) : null,
+);
 
-localStorageUsername.subscribe( (value) => {
+localStorageUsername.subscribe((value) => {
   if (value) return localStorage.setItem('appUser', JSON.stringify(value));
   else return localStorage.removeItem('appUser');
 });
-

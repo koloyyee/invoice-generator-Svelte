@@ -1,25 +1,48 @@
 import type { IInvoice } from '../../interfaces';
 
-export async function getAllInvoices():
-Promise<[ Error | undefined, undefined | IInvoice[] ]> {
+export async function getAllInvoices(): Promise<
+  [null | IInvoice[], Error | null]
+  > {
   try {
     const res = await fetch(`${import.meta.env.VITE_BACKEND_API}/invoices`);
-    const invoices : IInvoice[] = await res.json();
+    const invoices: IInvoice[] = await res.json();
 
-    return [undefined, invoices];
+    return [invoices, null];
   } catch (error) {
-    return [error, undefined];
+    return [null, error];
   }
 }
 
+export async function createInvoice(body: IInvoice) {
+  // :Promise<number | Error>
+  const {
+    invoiceId,
+    createdDate,
+    dueDate,
+    issuer,
+    customer,
+    items,
+    note,
+    status,
+    totalAmount,
+  } = body;
+  const doc = {
+    invoiceId,
+    createdDate,
+    dueDate,
+    issuer: issuer._id,
+    customer,
+    items,
+    note,
+    status,
+    totalAmount,
+  };
 
-export async function createInvoice( body : IInvoice )
-:Promise<number | Error> {
   try {
     const res = await fetch(`${import.meta.env.VITE_BACKEND_API}/invoices`, {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(body),
+      body: JSON.stringify(doc),
     });
     return res.status;
   } catch (error) {
@@ -27,20 +50,19 @@ export async function createInvoice( body : IInvoice )
   }
 }
 
-export async function getInvoiceById( invoiceId: string):
-Promise<[ Error | undefined, undefined | IInvoice ]>
-{
+export async function getInvoiceById(
+    invoiceId: string,
+): Promise<[null | IInvoice, Error | null]> {
   try {
     const res = await fetch(
-      `${import.meta.env.VITE_BACKEND_API}/invoices/${invoiceId}`);
-    const invoice : IInvoice = await res.json();
+        `${import.meta.env.VITE_BACKEND_API}/invoices/${invoiceId}`,
+    );
+    const invoice: IInvoice = await res.json();
 
-    return [undefined, invoice];
+    return [invoice, null];
   } catch (error) {
-    return [error, undefined];
+    return [null, error];
   }
 }
 
-// export async function updateInvoice( invoiceId : string) {
-
-// }
+export async function updateInvoice(invoice: IInvoice) {}
