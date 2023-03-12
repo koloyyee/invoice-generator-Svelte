@@ -1,9 +1,9 @@
 <script>
   import Login from '../../lib/components/auth/login.svelte';
   import Register from '../../lib/components/auth/register.svelte';
-  import { hasAccount } from '../../lib/stores/auth';
+  import { hasAccount, isAuthenticated } from '../../lib/stores/auth';
 
-  console.log($hasAccount);
+  console.log('auth: ' + $isAuthenticated);
 </script>
 
 <section

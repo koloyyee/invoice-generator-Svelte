@@ -2,16 +2,14 @@
   import { Toaster } from 'svelte-french-toast';
   import Router from 'svelte-spa-router';
   import Drawer from './lib/components/common/nav/drawer.svelte';
-  import { localStorageUsername } from './lib/stores/auth';
+  import { isAuthenticated } from './lib/stores/auth';
   import routes from './routes';
   import Auth from './routes/auth/index.svelte';
 </script>
 
 <body class="flex">
-  {#if $localStorageUsername !== null}
+  {#if $isAuthenticated}
     <Drawer>
-      <!--   <Menu /> -->
-
       <main class="">
         <Toaster />
         <Router {routes} />

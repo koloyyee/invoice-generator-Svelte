@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createForm } from 'felte';
-  import { push } from 'svelte-spa-router';
+  import { replace } from 'svelte-spa-router';
   import { getUserByUsername, getUserProfile, login } from '../../apis/users';
   import {
     currentUser,
@@ -39,11 +39,9 @@
       isAuthenticated.set(true);
       localStorageUsername.set(username);
 
-      console.log(user);
       localStorage.setItem('appUser', JSON.stringify(user));
       currentUser.update((value) => (value = user));
-
-      push('/');
+      replace('/');
     },
     onError(error, context) {
       console.error(error);
