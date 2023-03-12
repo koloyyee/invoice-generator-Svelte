@@ -16,7 +16,7 @@
   import TotalAmount from '../../lib/components/invoices/previews/total-amount.svelte';
   import type { IItem } from '../../lib/interfaces';
   import { currentUser } from '../../lib/stores/auth';
-  import { additionalNote, invoice } from '../../lib/stores/invoice';
+  import { additionalNote, invoice, logo } from '../../lib/stores/invoice';
   import { invoiceStatus } from '../../lib/util/status';
 
   let isSubmitted = false;
@@ -111,12 +111,8 @@
           />
 
           <Note bind:note={$data.note} />
-          <div class='flex justify-self-end'>
-            <Button
-              type="submit"
-              text={'Save'}
-              class="secondary "
-            />
+          <div class="flex justify-self-end">
+            <Button type="submit" text={'Save'} class="secondary " />
             <Button
               type="submit"
               text={'Leave'}
@@ -140,8 +136,12 @@
     </div>
     <section class="flex justify-between">
       <IssuerPreview bind:issuer={$data.issuer} />
-
-      <h1 class="text-right text-4xl font-extrabold ">Invoice</h1>
+      <div class="grid">
+        <h1 class="text-right text-4xl font-extrabold ">Invoice</h1>
+        {#if $logo}
+          <img class="max-w-sm max-h-36 mx-auto" src={$logo} alt={$logo} />
+        {/if}
+      </div>
     </section>
 
     <CustomerInfoPreview

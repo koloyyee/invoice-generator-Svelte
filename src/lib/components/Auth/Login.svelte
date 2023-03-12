@@ -9,6 +9,7 @@
     logout,
   } from '../../stores/auth';
   import AuthBtn from './auth-btn.svelte';
+  import DemoAccountAccess from './demo-account-access.svelte';
   import HasAccount from './has-account-btn.svelte';
 
   (function () {
@@ -48,6 +49,11 @@
       console.error(error);
     },
   });
+
+  function fillDemo(event: CustomEvent) {
+    $data.user.username = event.detail.username;
+    $data.user.password = event.detail.password;
+  }
 </script>
 
 <form use:form>
@@ -63,6 +69,7 @@
           type="text"
           name="user.username"
           id="username"
+          bind:value={$data.user.username}
           required
         />
       </label>
@@ -73,9 +80,12 @@
           type="password"
           name="user.password"
           id="password"
+          bind:value={$data.user.password}
           required
         />
       </label>
+      <DemoAccountAccess on:accessDemoAC={fillDemo} />
+
       <AuthBtn action={'Login'} />
     </div>
   </div>

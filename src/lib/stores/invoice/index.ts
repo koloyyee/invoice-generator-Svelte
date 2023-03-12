@@ -28,9 +28,9 @@ export const invoice = writable<IInvoice>({
   totalAmount: 0,
   status: invoiceStatus.NOT_PAID,
 });
-
 export const currentInvoice = writable<IInvoice>(null);
 export const additionalNote = writable('');
+export const logo = writable(null);
 
 export async function updateInvoicesStore() {
   const [result, error] = await getAllInvoices();

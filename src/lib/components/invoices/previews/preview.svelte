@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { IInvoice } from '../../../interfaces/index';
+  import { logo } from '../../../stores/invoice';
   import ItemTable from '../forms/item-table.svelte';
   import Note from './additional-note.svelte';
   import CustomerInfo from './customer-info.svelte';
@@ -13,6 +14,10 @@
   <Issuer bind:issuer={invoice.issuer} />
 
   <h1 class="text-right text-4xl font-extrabold ">Invoice</h1>
+  {@debug $logo}
+  {#if $logo}
+    <img src={$logo} alt={$logo} />
+  {/if}
 </section>
 
 <CustomerInfo

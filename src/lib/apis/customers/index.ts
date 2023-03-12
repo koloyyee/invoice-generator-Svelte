@@ -1,8 +1,8 @@
 export async function createCustomer(body): Promise<Response | Error> {
   const result = await fetch(`${import.meta.env.VITE_BACKEND_API}/customers`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-type": "application/json",
+      'Content-type': 'application/json',
     },
     body: JSON.stringify(body),
   });
@@ -15,7 +15,7 @@ export async function queryExistingUsers(queryObject) {
   const query = new URLSearchParams(queryObject).toString();
 
   const result = await fetch(
-    `${import.meta.env.VITE_BACKEND_API}/customers?${query}`,
+      `${import.meta.env.VITE_BACKEND_API}/customers?${query}`,
   );
 
   if (!result.ok) throw Error(result.statusText);

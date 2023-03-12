@@ -5,7 +5,6 @@
   import MdAddToPhotos from 'svelte-icons/md/MdAddToPhotos.svelte';
   import MdDashboard from 'svelte-icons/md/MdDashboard.svelte';
   import MdExitToApp from 'svelte-icons/md/MdExitToApp.svelte';
-  import MdLibraryBooks from 'svelte-icons/md/MdLibraryBooks.svelte';
   import MdSettings from 'svelte-icons/md/MdSettings.svelte';
   import { link } from 'svelte-spa-router';
   import ThemeToggle from './theme-toggle.svelte';

@@ -33,7 +33,7 @@ export async function updateCustomersStore() {
   try {
     const result = await getCustomers();
 
-    console.log(result)
+    console.log(result);
     localStorage.setItem("customers", result);
     customers.set(result);
   } catch (error) {
