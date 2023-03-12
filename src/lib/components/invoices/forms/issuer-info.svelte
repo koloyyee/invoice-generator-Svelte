@@ -109,9 +109,10 @@
         required
       />
     </div>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="upload cursor-pointer grid" on:click={() => fileInput.click()}>
       Upload Logo
-      <div class="w-1/3 mx-auto">
+      <div class="w-1/3 max-h-8 mx-auto">
         <FaRegImage />
       </div>
       <input

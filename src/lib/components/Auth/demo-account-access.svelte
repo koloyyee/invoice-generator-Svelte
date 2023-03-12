@@ -11,4 +11,6 @@
   }
 </script>
 
-<a class="link link-primary" on:click={accessDemoAC}> demo account </a>
+<button class="link link-primary" on:click={accessDemoAC}>
+  demo account
+</button>
