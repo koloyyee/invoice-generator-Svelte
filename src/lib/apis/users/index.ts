@@ -20,8 +20,6 @@ export async function login(
   values: AuthUser
 ): Promise<[undefined | Error, undefined | string]> {
   try {
-    console.log(import.meta.env.VITE_BACKEND_API);
-    debugger;
     const res = await fetch(`${import.meta.env.VITE_BACKEND_API}/auth/login`, {
       method: 'post',
       mode: 'cors',
