@@ -4,7 +4,7 @@
   import Drawer from './lib/components/common/nav/drawer.svelte';
   import { isAuthenticated } from './lib/stores/auth';
   import routes from './routes';
-  import Auth from './routes/auth/index.svelte';
+  import Index from './routes/auth/index.svelte';
 </script>
 
 <body class="flex">
@@ -16,7 +16,7 @@
       </main>
     </Drawer>
   {:else}
-    <Auth />
+    <Index />
   {/if}
 </body>
 
