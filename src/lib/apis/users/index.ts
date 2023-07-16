@@ -17,9 +17,11 @@ type UserProfile = {
 };
 
 export async function login(
-    values: AuthUser,
+  values: AuthUser
 ): Promise<[undefined | Error, undefined | string]> {
   try {
+    console.log(import.meta.env.VITE_BACKEND_API);
+    debugger;
     const res = await fetch(`${import.meta.env.VITE_BACKEND_API}/auth/login`, {
       method: 'post',
       mode: 'cors',
@@ -35,7 +37,7 @@ export async function login(
     });
 
     const result: AccessToken = await res.json();
-    debugger;
+    console.log(result);
     return [undefined, result.access_token];
   } catch (error) {
     return [error, undefined];
@@ -43,7 +45,7 @@ export async function login(
 }
 
 export async function getUserProfile(
-    accessToken: string,
+  accessToken: string
 ): Promise<[Error | undefined, UserProfile | undefined]> {
   try {
     const res = await fetch(`${import.meta.env.VITE_BACKEND_API}/profile`, {
@@ -61,7 +63,7 @@ export async function getUserProfile(
 }
 
 export async function register(
-    user: IIssuer,
+  user: IIssuer
 ): Promise<[Error | undefined, Response | undefined]> {
   try {
     const result = await fetch(`${import.meta.env.VITE_BACKEND_API}/users`, {
@@ -79,11 +81,11 @@ export async function register(
 }
 
 export async function getUserByUsername(
-    username: string,
+  username: string
 ): Promise<[Error | undefined, IIssuer | undefined]> {
   try {
     const res = await fetch(
-        `${import.meta.env.VITE_BACKEND_API}/users/${username}`,
+      `${import.meta.env.VITE_BACKEND_API}/users/${username}`
     );
     const data = await res.json();
 
@@ -127,14 +129,14 @@ export async function update(id: string, value: IIssuer) {
   };
   try {
     const result = await fetch(
-        `${import.meta.env.VITE_BACKEND_API}/users/${_id}`,
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify(doc),
+      `${import.meta.env.VITE_BACKEND_API}/users/${_id}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json',
         },
+        body: JSON.stringify(doc),
+      }
     );
 
     return result;
